@@ -15,5 +15,3 @@ export const createTeachertable=async()=>{
         console.log(error.message)
     }
 }
-
-await createTeachertable()

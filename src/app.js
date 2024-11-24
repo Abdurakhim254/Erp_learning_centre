@@ -1,5 +1,5 @@
 import express from 'express'
-import {authrouter,userrouter,courserouter,teacherrouter,studentrouter} from "./routes/index.js"
+import {authrouter,userrouter,courserouter,teacherrouter,studentrouter,assignrouter} from "./routes/index.js"
 import {createAlltables} from "../src/schema/index.js"
 
 export const app=express()
@@ -25,3 +25,4 @@ app.use("/user",userrouter)
 app.use("/course",courserouter)
 app.use("/teacher",teacherrouter)
 app.use("/student",studentrouter)
+app.use("/assignment",assignrouter)

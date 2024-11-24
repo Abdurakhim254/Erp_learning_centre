@@ -15,6 +15,6 @@ export const createCoursetable=async()=>{
             console.log("Table allaqachon yaratilgan")
         }
     } catch (error) {
-        return error.message
+        console.log(error.message)
     }
 }
