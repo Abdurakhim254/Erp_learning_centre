@@ -1,15 +1,23 @@
 import express from 'express'
-import {authrouter,userrouter,courserouter,teacherrouter,studentrouter,assignrouter} from "./routes/index.js"
+import {mainRouter} from "./routes/main.js"
 import {createAlltables} from "../src/schema/index.js"
+import helmet from 'helmet'
+import { rateLimit } from 'express-rate-limit'
 
 export const app=express()
 
 
+const limitter=rateLimit({
+    windowMs:15*60*1000,
+    limit:20,
+
+})
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-
-
+app.use(helmet())
+app.use(limitter)
 
 app.get("/api/v1/setup",async(req,res)=>{
     try {
@@ -20,9 +28,4 @@ app.get("/api/v1/setup",async(req,res)=>{
     }
 })
 
-app.use("/auth",authrouter)
-app.use("/user",userrouter)
-app.use("/course",courserouter)
-app.use("/teacher",teacherrouter)
-app.use("/student",studentrouter)
-app.use("/assignment",assignrouter)
+app.use("/api/v1",mainRouter)

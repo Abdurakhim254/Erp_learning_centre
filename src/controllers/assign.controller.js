@@ -1,10 +1,16 @@
 import {getAllAsigns,getAssignByid,createAssign,updateAssign,deleteAssign} from "../services/index.js"
+import {paginate_function} from "../helpers/index.js"
 
 export const AssignObj={
     getAllAsignCon:async function(req,res){
         try {
+            const {PAGE,LIMIT}=req.query
             const result=await getAllAsigns()
-            res.status(200).send(result)
+            if(PAGE>0 || LIMIT>0){
+                const data=await paginate_function(result,PAGE,LIMIT)
+                return res.status(200).send(data)
+            }
+            return res.status(200).send(result)
         } catch (error) {
             res.status(400).send(error.message)
         }
