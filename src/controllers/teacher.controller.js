@@ -1,4 +1,5 @@
 import {getTeachers,getTeacherByid,createTeacher,updateTeacher,deleteTeacher} from "../services/index.js"
+import {paginate_function} from "../helpers/index.js"
 
 export const TeacherObj={
     getAllteachers:async function(req,res){
