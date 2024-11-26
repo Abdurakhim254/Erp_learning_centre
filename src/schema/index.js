@@ -3,6 +3,8 @@ import {createCoursetable} from "./course/course.table.js"
 import { createTeachertable } from "./teacher/teacher.table.js"
 import {CreateStudentTable} from "./student/student.table.js"
 import {createAssignTable} from "./assign/assign.table.js"
+import {CreateHomeworkTable} from "./homework/homework.table.js"
+import {CreateLessonTable} from "./lesson/lesson.table.js"
 
 export const createAlltables=async()=>{
     try {
@@ -11,6 +13,8 @@ export const createAlltables=async()=>{
         await createTeachertable()
         await CreateStudentTable()
         await createAssignTable()
+        await CreateHomeworkTable()
+        await CreateLessonTable()
     } catch (error) {
         return error.message
     }

@@ -1,4 +1,4 @@
-import {authrouter,assignrouter,userrouter,courserouter,teacherrouter,studentrouter} from "./index.js"
+import {authrouter,assignrouter,userrouter,courserouter,teacherrouter,studentrouter, homeworkRouter, lessonRouter} from "./index.js"
 
 import express from 'express'
 
@@ -10,3 +10,5 @@ mainRouter.use("/user",userrouter)
 mainRouter.use("/course",courserouter)
 mainRouter.use("/teacher",teacherrouter)
 mainRouter.use("/student",studentrouter)
+mainRouter.use("/homework",homeworkRouter)
+mainRouter.use("/lesson",lessonRouter)

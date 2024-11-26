@@ -31,18 +31,18 @@ app.get("/api/v1/setup", async (req, res) => {
 
 app.use("/api/v1", mainRouter);
 
-app.use((req, res) => {
-  const ip = req.ip;
-  const ips = req.ips;
-  const host = req.host;
-  const hostname = req.hostname;
-  const xhr = req.xhr;
+// app.use((req, res) => {
+//   const ip = req.ip;
+//   const ips = req.ips;
+//   const host = req.host;
+//   const hostname = req.hostname;
+//   const xhr = req.xhr;
 
-  const userAgent = req.headers["user-agent"];
-  const result = detector.detect(userAgent);
+//   const userAgent = req.headers["user-agent"];
+//   const result = detector.detect(userAgent);
 
-  // console.log('result-parse',result)
-  console.log({ ...result, ip, ips, host, hostname, xhr });
+//   // console.log('result-parse',result)
+//   console.log({ ...result, ip, ips, host, hostname, xhr });
 
-  res.send(result);
-});
+//   res.send(result);
+// });
