@@ -1,5 +1,5 @@
-import {createAccesstoken,createRefreshtoken} from "../helpers/index.js"
-import {registerService,loginService,profileService,findByEmail} from "../services/index.js"
+import {createRefreshtoken} from "../helpers/index.js"
+import {registerService,loginService,profileService} from "../services/index.js"
 export const authOBject = {
   authRegisterCon: async function (req, res) {
     try {
@@ -17,17 +17,7 @@ export const authOBject = {
     try {
       const {email,password}=req.body
       const result=await loginService({email,password})
-      delete result[0].password
-      if(result=="Ro'yxatdan o'tishingiz kerak"){
-        res.status(300).send(result)
-      }else{
-        const role=result[0].role
-        const accessToken=await createAccesstoken(email,role)
-        res.status(200).send({
-          result,
-          accessToken
-        });
-      }
+      res.status(200).send(result)
     } catch (error) {
       res.status(400).send(error.message);
     }
@@ -51,11 +41,26 @@ export const authOBject = {
   }
   ,
 
+  VerifyOtp:async function(req,res){
+    try {
+      const {email,otp}=req.body
+      
+      res.status(200).send("ok")
+    } catch (error) {
+      res.status(400).send(error.message)
+    }
+
+
+  }
+
+  ,
+
   authProfileCon: async function (req, res) {
     try {
       const {email}=req.params
-      const result=await findByEmail({email})
-      res.status(200).send(result);
+      const result=await profileService(email)
+      delete result[0].password
+      res.status(200).send({result});
     } catch (error) {
       res.status(400).send(error.message);
     }

@@ -1,8 +1,8 @@
 import {connect} from "../database/index.js"
 
-export const findByEmail=async({email})=>{
+export const findByEmail=async(email)=>{
     try {
-        const result=await connect.select("*").table("user").where({email}).returning("*")
+        const result=await connect.select("*").table("user").where({email})
         if(result.length>=1){
             return result
         }else{
