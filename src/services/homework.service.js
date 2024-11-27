@@ -30,7 +30,7 @@ export const getHomeworkByid=async(id)=>{
 export const createHomework=async({student_id,description,title})=>{
     try {
         await connect('homework').insert({student_id,description,title})
-        return "Student yaratildi"
+        return "Homework yaratildi"
     } catch (error) {
         return error.message
     }
